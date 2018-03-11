@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/colDatum"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:textStyle="bold"
+        android:textSize="@dimen/textsize_listkey"/>
+
+    <TextView
+        android:id="@+id/colStrecke"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:textAlignment="textEnd"
+        android:layout_marginEnd="10dp"/>
+
+    <TextView
+        android:id="@+id/colBetrag"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:textAlignment="textEnd"
+        />
+
+    <TextView
+        android:id="@+id/colMenge"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:textAlignment="textEnd"
+        />
+
+    <TextView
+        android:id="@+id/colNotiz"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        android:textAlignment="textStart"
+        />
+
+</LinearLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_tankstopp"
+            android:icon="@drawable/ic_zapfi"
+            android:title="@string/nav_tankstopp" />
+        <item
+            android:id="@+id/nav_service"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/nav_service" />
+        <item
+            android:id="@+id/nav_statistics"
+            android:icon="@drawable/ic_chart_black"
+            android:title="@string/nav_statistics" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/nav_settings" />
+            <item
+                android:id="@+id/nav_close"
+                android:icon="@drawable/ic_close_black"
+                android:title="@string/nav_close" />
+        </menu>
+    </item>
+
+</menu>

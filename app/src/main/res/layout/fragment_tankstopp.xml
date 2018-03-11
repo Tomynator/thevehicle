@@ -1,0 +1,200 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_tankstopp_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.weiapps.myVehicle.fragmentTankstopp">
+
+    <Button
+        android:id="@+id/btn_datum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:drawableStart="@drawable/ic_kalender"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="300dp"
+        android:layout_height="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lbStrecke"
+        style="@style/TankstoppLabels"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/lbl_strecke"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space" />
+
+    <EditText
+        android:id="@+id/Strecke"
+        style="@style/numberDecInput"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@+id/lbStrecke"
+        app:layout_constraintTop_toBottomOf="@+id/space" />
+
+    <TextView
+        android:id="@+id/lblBetrag"
+        style="@style/TankstoppLabels"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/lbl_betrag"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbStrecke" />
+
+    <EditText
+        android:id="@+id/Betrag"
+        style="@style/numberDecInput"
+        android:layout_height="38dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@+id/lblBetrag"
+        app:layout_constraintTop_toBottomOf="@+id/Strecke" />
+
+    <TextView
+        android:id="@+id/lblMenge"
+        style="@style/TankstoppLabels"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:text="Menge"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblBetrag" />
+
+    <EditText
+        android:id="@+id/Menge"
+        style="@style/numberDecInput"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/lblMenge"
+        app:layout_constraintTop_toBottomOf="@+id/Betrag" />
+
+
+    <TextView
+        android:id="@+id/lblPreisProEinheit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Preis/L"
+        app:layout_constraintBottom_toBottomOf="@+id/lblVerbrauch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lblVerbrauch"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/lblVerbrauch"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="88dp"
+        android:text="Verbrauch"
+        app:layout_constraintEnd_toStartOf="@+id/lblWrgProEinheit"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toEndOf="@+id/lblPreisProEinheit"
+        app:layout_constraintTop_toBottomOf="@+id/lblMenge" />
+
+    <TextView
+        android:id="@+id/lblWrgProEinheit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:text="€/100km"
+        app:layout_constraintBottom_toBottomOf="@+id/lblVerbrauch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lblVerbrauch"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/BetragProVol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/lblPreisProEinheit"
+        app:layout_constraintHorizontal_bias="0.642"
+        app:layout_constraintStart_toStartOf="@+id/lblPreisProEinheit"
+        app:layout_constraintTop_toBottomOf="@+id/lblPreisProEinheit" />
+
+    <TextView
+        android:id="@+id/Verbrauch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/lblVerbrauch"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="@+id/lblVerbrauch"
+        app:layout_constraintTop_toBottomOf="@+id/lblVerbrauch" />
+
+    <TextView
+        android:id="@+id/KostenProStrecke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/lblWrgProEinheit"
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintStart_toStartOf="@+id/lblWrgProEinheit"
+        app:layout_constraintTop_toBottomOf="@+id/lblWrgProEinheit" />
+
+    <EditText
+        android:id="@+id/Notiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/lbl_notiz"
+        app:layout_constraintBottom_toTopOf="@+id/lblVerbrauch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Menge"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:text="Save"
+        app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnDelete" />
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnSave" />
+
+
+</android.support.constraint.ConstraintLayout>

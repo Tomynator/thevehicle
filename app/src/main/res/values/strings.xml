@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">My Vehicle</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="nav_tankstopp">Tankstopp</string>
+    <string name="nav_service">Service</string>
+    <string name="nav_statistics">Statistik</string>
+    <string name="nav_close">Ende</string>
+    <string name="nav_settings">Einstellungen</string>
+    <string name="nav_exit">Ende</string>
+
+    <string name="stat_header">Statistik Page</string>
+    <string name="ts_header">Tankstopp</string>
+    <string name="srv_header">Service</string>
+
+    <string name="settings_header">Einstellungen</string>
+
+    <string name="lbl_strecke">Strecke</string>
+    <string name="lbl_betrag">Betrag</string>
+    <string name="lbl_notiz">Notiz</string>
+
+    <string name="strecke">Strecke</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Messages -->
+    <string name="Msg_01">Kein weiterer Datensatz vorhanden!</string>
+    <string name="Msg_02">Datensatz gelöscht!</string>
+    <string name="Msg_03">Datensatz nicht vorhanden!</string>
+    <string name="Msg_04">Datensatz wirklich löschen?</string>
+    <string name="Msg_05">Eingabe fehlt im Feld </string>
+    <string name="Msg_06">Satz wurde gespeichert!</string>
+    <string name="Msg_07">Backup/Restore invalid Function:</string>
+    <string name="Msg_08">Datenbank #dbName# exportiert!</string>
+    <string name="Msg_09">Datenbank #dbName# importiert!</string>
+
+
+</resources>
