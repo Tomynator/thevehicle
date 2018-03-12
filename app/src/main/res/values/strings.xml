@@ -23,6 +23,10 @@
     <string name="lbl_betrag">Betrag</string>
     <string name="lbl_notiz">Notiz</string>
 
+    <string name="btn_save">Save</string>
+    <string name="btn_delete">Delete</string>
+
+
     <string name="strecke">Strecke</string>
 
 
