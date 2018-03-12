@@ -4,8 +4,10 @@ package com.weiapps.myVehicle;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.text.style.TtsSpan;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -54,6 +56,7 @@ public class fragmentTankstopp extends Fragment  {
     private float floatKostenProStrecke = 0;
 
     private Tankstopp tankstopp = null;
+    private int buttonID ;
 
     public fragmentTankstopp() {
         // Required empty public constructor
@@ -166,7 +169,7 @@ public class fragmentTankstopp extends Fragment  {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Delete();
+                DeleteDialog();
             }
         });
 
@@ -212,6 +215,13 @@ public class fragmentTankstopp extends Fragment  {
 
         }
 
+    private void DeleteDialog() {
+
+        this.buttonID = R.id.btnDelete;
+        // Msg "Datensatz wirklich löschen?"
+        boxOKCancel(getResources().getString(R.string.Msg_04));
+
+    }
     private void Delete() {
         boolean retc;
 
@@ -232,6 +242,7 @@ public class fragmentTankstopp extends Fragment  {
         }
 
     }
+
 
     private void RecToMap() {
 
@@ -302,6 +313,46 @@ public class fragmentTankstopp extends Fragment  {
         KostenProStrecke.setText(strEmpty);
 
         Strecke.requestFocus();
+    }
+
+    private void boxOKCancel(String Message) {
+
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+        builder1.setTitle(R.string.app_name);
+        builder1.setMessage(Message);
+        builder1.setCancelable(true);
+        builder1.setIcon(R.drawable.ic_zapfi);
+
+        builder1.setPositiveButton(android.R.string.ok,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        OkCancelDialogHandler();
+                        dialog.cancel();
+                    }
+                });
+        builder1.setNegativeButton(android.R.string.cancel,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+
+    private void OkCancelDialogHandler() {
+
+        switch (this.buttonID) {
+
+            case R.id.btnDelete:
+                Delete();
+                break;
+
+            default:
+                break;
+        }
+
     }
 
 }
