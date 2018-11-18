@@ -5,6 +5,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="Backup">Backup</string>
+    <string name="Restore">Restore</string>
 
     <string name="nav_tankstopp">Tankstopp</string>
     <string name="nav_service">Service</string>

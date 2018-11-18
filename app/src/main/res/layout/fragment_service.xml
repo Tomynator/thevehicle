@@ -1,4 +1,5 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_tankstopp_fragment"
     android:layout_width="match_parent"
@@ -6,18 +7,78 @@
     tools:context="com.weiapps.myVehicle.fragmentService">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/srv_header" />
+
 
     <Button
         android:id="@+id/btn_datum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
         android:drawableStart="@drawable/ic_kalender"
-        android:text="" />
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/lblArt"
+        android:layout_width="64dp"
+        android:layout_height="24dp"
+        android:text="Art"
+        android:textAlignment="textStart"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="124dp" />
+
+    <TextView
+        android:id="@+id/lblBetrag"
+        android:layout_width="64dp"
+        android:layout_height="23dp"
+        android:text="Betrag"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="173dp" />
+
+    <TextView
+        android:id="@+id/lblNotiz"
+        android:layout_width="65dp"
+        android:layout_height="23dp"
+        android:text="Notiz"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="231dp" />
+
+    <EditText
+        android:id="@+id/Art"
+        android:layout_width="100dp"
+        android:layout_height="41dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text=""
+        tools:layout_editor_absoluteX="171dp"
+        tools:layout_editor_absoluteY="115dp" />
+
+    <EditText
+        android:id="@+id/Betrag"
+        android:layout_width="101dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/Notiz"
+        tools:layout_editor_absoluteY="163dp" />
+
+    <EditText
+        android:id="@+id/Notiz"
+        android:layout_width="102dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text=""
+        tools:layout_editor_absoluteX="171dp"
+        tools:layout_editor_absoluteY="219dp" />
 
 
-</FrameLayout>
+</android.support.constraint.ConstraintLayout>

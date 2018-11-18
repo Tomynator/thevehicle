@@ -1,9 +1,13 @@
 package com.weiapps.myVehicle;
 
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,7 +17,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity
@@ -103,6 +113,11 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.menue_backup){
+            manage_Backup("backup");
+
+        } else if (id == R.id.menue_restore){
+            Toast.makeText(getApplicationContext(), "restore pressed", Toast.LENGTH_SHORT).show();
         }
 
         return super.onOptionsItemSelected(item);
@@ -150,5 +165,114 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    void manage_Backup(String method){
+
+        ExternalStorage extStg = new ExternalStorage(getApplicationContext(),
+                "MyVehicle.txt");
+        if (extStg.mExternalStorageWriteable) {
+            extStg.createExternalStoragePrivateFile();
+        }
+
+        String dbName = Database.getDbName();
+        File from = getApplicationContext().getDatabasePath(dbName);
+
+        if (from.isFile()) {
+            Log.d("from Db exists ?", "from.exists = true");
+        }
+
+        String baseDir = Environment.getExternalStorageDirectory()
+                .getAbsolutePath() + File.separator + "spritrechner";
+        File dir = new File(baseDir);
+
+        boolean resp = dir.isDirectory();
+
+        if (!resp) {
+            try {
+                resp = dir.mkdirs();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        File to = new File(baseDir, dbName);
+
+        if (!to.isFile()) {
+            try {
+                resp = to.createNewFile();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+
+
+        if (method == "backup") {
+
+            try {
+                copyFileUsingChannels(from, to);
+                String tmpString = getResources().getString(R.string.Msg_08);
+                tmpString = tmpString.replace("#dbName#", dbName);
+                boxOK(tmpString + "\nPfad: " + dir.getAbsolutePath());
+            } catch (IOException ex) {
+                // TODO Auto-generated catch block
+                ex.printStackTrace();
+            }
+
+        } else {
+            if (method == "restore") {
+                try {
+                    copyFileUsingChannels(to, from);
+                    String tmpString = getResources().getString(R.string.Msg_09);
+                    tmpString = tmpString.replace("#dbName#", dbName);
+                    boxOK(tmpString + "\nPfad: " + dir.getAbsolutePath());
+                } catch (IOException ex) {
+                    // TODO Auto-generated catch block
+                    ex.printStackTrace();
+                }
+
+            } else {
+                boxOK(getResources().getString(R.string.Msg_07) + " " + method);
+            }
+        }
+
+        Toast.makeText(getApplicationContext(), dbName, Toast.LENGTH_SHORT).show();
+
+    }
+
+    private static void copyFileUsingChannels(File src, File dst)
+            throws IOException {
+        FileChannel inputChannel = null;
+        FileChannel outputChannel = null;
+        try {
+            inputChannel = new FileInputStream(src).getChannel();
+            outputChannel = new FileOutputStream(dst).getChannel();
+            outputChannel.transferFrom(inputChannel, 0, inputChannel.size());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (inputChannel != null)
+                inputChannel.close();
+            if (outputChannel != null)
+                outputChannel.close();
+        }
+    }
+
+    private void boxOK(String Message) {
+
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setTitle(this.getTitle());
+        builder1.setMessage(Message);
+        builder1.setCancelable(true);
+        builder1.setIcon(R.drawable.ic_vehicle_old);
+
+        builder1.setNeutralButton(android.R.string.ok,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
 
 }
