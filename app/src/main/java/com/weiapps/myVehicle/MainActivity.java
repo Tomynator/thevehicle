@@ -1,6 +1,7 @@
 package com.weiapps.myVehicle;
 
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Environment;
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity
             manage_Backup("backup");
 
         } else if (id == R.id.menue_restore){
-            Toast.makeText(getApplicationContext(), "restore pressed", Toast.LENGTH_SHORT).show();
+            manage_Backup("restore");
         }
 
         return super.onOptionsItemSelected(item);
@@ -167,42 +168,51 @@ public class MainActivity extends AppCompatActivity
 
     void manage_Backup(String method){
 
-        ExternalStorage extStg = new ExternalStorage(getApplicationContext(),
-                "MyVehicle.txt");
-        if (extStg.mExternalStorageWriteable) {
-            extStg.createExternalStoragePrivateFile();
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            Log.d("", state);
         }
 
+        // File "from"
         String dbName = Database.getDbName();
         File from = getApplicationContext().getDatabasePath(dbName);
 
-        if (from.isFile()) {
-            Log.d("from Db exists ?", "from.exists = true");
+        if(!from.isFile()) {
+            boxOK(from.getAbsolutePath() + " not found or not a file");
+            return;
         }
 
-        String baseDir = Environment.getExternalStorageDirectory()
-                .getAbsolutePath() + File.separator + "spritrechner";
-        File dir = new File(baseDir);
+        // File "to": external and private
+        File to = null;
+        File bernd = getApplicationContext().getFilesDir();
+        Log.d("", bernd.getAbsolutePath());
 
-        boolean resp = dir.isDirectory();
+        if(bernd.exists()){
 
-        if (!resp) {
-            try {
-                resp = dir.mkdirs();
-            } catch (Exception ex) {
-                ex.printStackTrace();
+            String fileName = bernd.getAbsoluteFile()+ File.separator + Database.getDbName();
+            to = new File(fileName);
+            if(!to.exists()){
+                boolean retc ;
+                try {
+                    retc = to.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            else{
+                Log.d("adf", "to exists");
+            }
+
+        }else{
+            boolean retc = bernd.mkdirs();
+            if(retc){
+                Log.d("adsf","yes");
+            }
+            else{
+                Log.d("adsf","no");
             }
         }
 
-        File to = new File(baseDir, dbName);
-
-        if (!to.isFile()) {
-            try {
-                resp = to.createNewFile();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
 
 
         if (method == "backup") {
@@ -211,7 +221,7 @@ public class MainActivity extends AppCompatActivity
                 copyFileUsingChannels(from, to);
                 String tmpString = getResources().getString(R.string.Msg_08);
                 tmpString = tmpString.replace("#dbName#", dbName);
-                boxOK(tmpString + "\nPfad: " + dir.getAbsolutePath());
+                boxOK(tmpString + "\nPfad: " + bernd.getAbsolutePath());
             } catch (IOException ex) {
                 // TODO Auto-generated catch block
                 ex.printStackTrace();
@@ -223,7 +233,7 @@ public class MainActivity extends AppCompatActivity
                     copyFileUsingChannels(to, from);
                     String tmpString = getResources().getString(R.string.Msg_09);
                     tmpString = tmpString.replace("#dbName#", dbName);
-                    boxOK(tmpString + "\nPfad: " + dir.getAbsolutePath());
+                    boxOK(tmpString + "\nPfad: " + bernd.getAbsolutePath());
                 } catch (IOException ex) {
                     // TODO Auto-generated catch block
                     ex.printStackTrace();
@@ -232,6 +242,42 @@ public class MainActivity extends AppCompatActivity
             } else {
                 boxOK(getResources().getString(R.string.Msg_07) + " " + method);
             }
+
+
+
+        String filename = "myfile";
+        String fileContents = "Hello world!";
+        FileOutputStream outputStream;
+
+        try {
+            outputStream = openFileOutput(filename, getApplicationContext().MODE_PRIVATE);
+            outputStream.write(fileContents.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+        //----------------------------------------------------------------------
+
+
+        ExternalStorage extStg = new ExternalStorage(getApplicationContext(),
+                "MyVehicle.txt");
+        if (extStg.mExternalStorageWriteable) {
+            extStg.createExternalStoragePrivateFile();
+        }
+
+        //String dbName = Database.getDbName();
+        //File from = getApplicationContext().getDatabasePath(dbName);
+
+
+
+
+
+
         }
 
         Toast.makeText(getApplicationContext(), dbName, Toast.LENGTH_SHORT).show();

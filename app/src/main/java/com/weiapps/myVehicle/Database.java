@@ -20,7 +20,7 @@ import android.database.sqlite.SQLiteOpenHelper;
         private static final int DATABASE_VERSION = 1;
 
         // Database Name
-        private static final String DATABASE_NAME = "spritDatabase";
+        private static final String DATABASE_NAME = "myVehicle";
 
         // Tankstopps table name
         private static final String TABLE_TANKSTOPPS = "tankstopps";
