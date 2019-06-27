@@ -7,78 +7,105 @@
     tools:context="com.weiapps.myVehicle.fragmentService">
 
     <!-- TODO: Update blank fragment layout -->
-
-
     <Button
         android:id="@+id/btn_datum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:drawableStart="@drawable/ic_kalender"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="300dp"
+        android:layout_height="10dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
-        android:drawableStart="@drawable/ic_kalender"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/lblArt"
-        android:layout_width="64dp"
-        android:layout_height="24dp"
-        android:text="Art"
-        android:textAlignment="textStart"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="124dp" />
+        style="@style/TankstoppLabels"
 
-    <TextView
-        android:id="@+id/lblBetrag"
-        android:layout_width="64dp"
-        android:layout_height="23dp"
-        android:text="Betrag"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="173dp" />
-
-    <TextView
-        android:id="@+id/lblNotiz"
-        android:layout_width="65dp"
-        android:layout_height="23dp"
-        android:text="Notiz"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="231dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/lbl_art"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space" />
 
     <EditText
         android:id="@+id/Art"
-        android:layout_width="100dp"
-        android:layout_height="41dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text=""
-        tools:layout_editor_absoluteX="171dp"
-        tools:layout_editor_absoluteY="115dp" />
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@+id/lblArt"
+        app:layout_constraintTop_toBottomOf="@+id/space" />
+
+    <TextView
+        android:id="@+id/lblBetrag"
+        style="@style/TankstoppLabels"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/lbl_betrag"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblArt" />
 
     <EditText
         android:id="@+id/Betrag"
-        android:layout_width="101dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text=""
-        app:layout_constraintStart_toStartOf="@+id/Notiz"
-        tools:layout_editor_absoluteY="163dp" />
+        style="@style/numberDecInput"
+        android:layout_height="38dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@+id/lblBetrag"
+        app:layout_constraintTop_toBottomOf="@+id/Art" />
+
 
     <EditText
         android:id="@+id/Notiz"
-        android:layout_width="102dp"
+        android:layout_width="362dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text=""
-        tools:layout_editor_absoluteX="171dp"
-        tools:layout_editor_absoluteY="219dp" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:hint="@string/lbl_notiz"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Betrag" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:drawableStart="@drawable/ic_check_black_24dp"
+        android:text="@string/btn_save"
+        app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnDelete" />
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:drawableStart="@drawable/ic_delete_black_24dp"
+        android:text="@string/btn_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnSave" />
 
 
 </android.support.constraint.ConstraintLayout>

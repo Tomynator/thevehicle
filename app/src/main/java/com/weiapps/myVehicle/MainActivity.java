@@ -62,6 +62,11 @@ public class MainActivity extends AppCompatActivity
                 } else if (active_fragment== R.id.nav_service){
                     fragmentService frgSrv = new fragmentService();
                     //FragmentManager frgMan = getFragmentManager() ;
+
+                    Bundle data = new Bundle();//Use bundle to pass data
+                    data.putString("data", helpers.today());//put string, int, etc in bundle with a key value
+                    frgSrv.setArguments(data);//Finally set argument bundle to fragment
+
                     frgMan.beginTransaction().replace(R.id.layout_main_fragment, frgSrv, frgSrv.getTag()).addToBackStack(null).commit();
                 } else {
                    Snackbar.make(view, "Do tamma no wos " + String.valueOf(active_fragment), Snackbar.LENGTH_LONG)
@@ -242,42 +247,6 @@ public class MainActivity extends AppCompatActivity
             } else {
                 boxOK(getResources().getString(R.string.Msg_07) + " " + method);
             }
-
-
-
-        String filename = "myfile";
-        String fileContents = "Hello world!";
-        FileOutputStream outputStream;
-
-        try {
-            outputStream = openFileOutput(filename, getApplicationContext().MODE_PRIVATE);
-            outputStream.write(fileContents.getBytes());
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-
-
-
-        //----------------------------------------------------------------------
-
-
-        ExternalStorage extStg = new ExternalStorage(getApplicationContext(),
-                "MyVehicle.txt");
-        if (extStg.mExternalStorageWriteable) {
-            extStg.createExternalStoragePrivateFile();
-        }
-
-        //String dbName = Database.getDbName();
-        //File from = getApplicationContext().getDatabasePath(dbName);
-
-
-
-
-
-
         }
 
         Toast.makeText(getApplicationContext(), dbName, Toast.LENGTH_SHORT).show();
